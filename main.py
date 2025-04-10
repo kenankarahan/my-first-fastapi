@@ -7,15 +7,15 @@ app = FastAPI()
 
 
 
-# Kullanıcı ve Ürün Modellerini Tanımlama
+# Creating Models
 
-# Kullanıcı Modeli
+# User Model
 class User(BaseModel):
     username : str = Field(min_length=3, max_length=20)
     age : int = Field(ge=18, le=100)
     email : str = Field(pattern=r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$', default="example@example.com")
 
-# Ürün Modeli
+# Product Model
 class Product(BaseModel):
     name : str = Field(min_length=3, max_length=50)
     price : float = Field(gt=0)
@@ -25,14 +25,14 @@ class Product(BaseModel):
 
 
 
-# Endpointleri Tanımlama
+# Defining Endpoints
 
-# İndex
+# Index
 @app.get("/")
 async def index():
     return {"message": "Welcome to my first FastAPI application!"}
 
-# Kullanıcı İşlemleri
+# User Functions
 @app.get("/users")
 async def get_users():
     db.cur.execute('SELECT id, username FROM users')
@@ -70,7 +70,7 @@ async def delete_user(id: int):
     db.con.commit()
     return {"response" : f"User '{username}' deleted successfully!"}
 
-# Ürün İşlemleri
+# Product Functions
 @app.get("/products")
 async def get_products():
     db.cur.execute('SELECT id, name, category FROM products')
