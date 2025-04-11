@@ -1,4 +1,3 @@
-# my-first-fastapi
-My first FastAPI project to understand how it works.
+# My First FastAPI Application
 
-It has 2 models(User and Product) and basic functions which controls an sqlite database.
+A simple API application developed using FastAPI and SQLite3 to help understand the use of FastAPI, performing basic user and product operations on the database.
